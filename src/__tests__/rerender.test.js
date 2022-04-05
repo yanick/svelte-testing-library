@@ -2,11 +2,11 @@ import { render } from '..'
 import Comp from './fixtures/Comp'
 
 describe('rerender', () => {
-  test('mounts new component successfully', () => {
+  test('mounts new component successfully', async () => {
     const { container, rerender } = render(Comp, { props: { name: 'World 1' } })
 
     expect(container.firstChild).toHaveTextContent('Hello World 1!')
-    rerender({ props: { name: 'World 2' } })
+    await rerender({ props: { name: 'World 2' } })
     expect(container.firstChild).toHaveTextContent('Hello World 2!')
   })
 
