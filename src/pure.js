@@ -63,8 +63,11 @@ const render = (
     container,
     component,
     debug: (el = container) => console.log(prettyDOM(el)),
-    rerender: (options) => {
-      if (componentCache.has(component)) component.$destroy()
+    rerender: async (options) => {
+      if (componentCache.has(component)) {
+        component.$destroy()
+        await tick()
+      }
 
       // eslint-disable-next-line no-new
       const newComponent = new ComponentConstructor({
